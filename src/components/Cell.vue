@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="w-[100px] h-[100px] border rounded cursor-pointer" :id="`${index}`">
+  <div class="w-[100px] h-[100px] border rounded cursor-pointer flex justify-center items-center text-4xl text-blue-300" :id="`${index}`">
     {{ value }}
   </div>
 </template>

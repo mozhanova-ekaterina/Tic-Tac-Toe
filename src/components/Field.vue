@@ -13,9 +13,10 @@ const emit = defineEmits(['switchPlayer', 'gameOver'])
 
 const onClick = (e: Event): void => {
   const target = e.target as HTMLElement
-  props.player === 'Player 1' ? props.board[+target.id] = 'X' : props.board[+target.id] = 'O'
+  props.player === 'Игрок 1' ? props.board[+target.id] = 'X' : props.board[+target.id] = 'O'
   setTimeout(() => {
-    if (haveWinner()) emit('gameOver')
+    if (haveWinner()) emit('gameOver', props.player)
+    else if (!haveWinner() && noMoves()) emit('gameOver')
     else emit('switchPlayer')
   }, 500);
 }
@@ -30,6 +31,9 @@ const haveWinner = (): boolean => {
   }
   return false
 }
+
+const noMoves = (): boolean => props.board.every(cell => cell !== '')
+
 
 </script>
 <template>

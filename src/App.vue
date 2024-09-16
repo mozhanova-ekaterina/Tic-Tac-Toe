@@ -1,19 +1,32 @@
 <script setup lang="ts">
-import GameOver from './components/GameOver.vue'
-import { Ref, ref } from 'vue';
-import Field from './components/Field.vue'
-import { Player } from './models';
+import Restart from './components/Restart.vue'
+import GameOver from "./components/GameOver.vue";
+import { Ref, ref } from "vue";
+import Field from "./components/Field.vue";
+import { Player } from "./models";
 
-const board: Ref<string[]> = ref(new Array(9).fill(''))
-const currentPlayer: Ref<Player> = ref('Player 1')
+const board: Ref<string[]> = ref(new Array(9).fill(""));
+const currentPlayer: Ref<Player> = ref("Игрок 1");
 const onSwitchPlayer = () => {
-  currentPlayer.value === 'Player 1' ? currentPlayer.value = 'Player 2' : currentPlayer.value = 'Player 1'
+  currentPlayer.value === "Игрок 1"
+    ? (currentPlayer.value = "Игрок 2")
+    : (currentPlayer.value = "Игрок 1");
+};
+const gameOver = ref(false);
+const winner = ref('');
+const restart = () => {
+  board.value.fill("");
+  gameOver.value = false;
+  currentPlayer.value = "Игрок 1";
+};
+const onGameOver = (player?: Player) => {
+  gameOver.value = true
+  winner.value = player as Player
 }
-const gameOver = ref(false)
-
 </script>
 
 <template>
-  <Field :board="board" :player="currentPlayer" @switch-player="onSwitchPlayer" @game-over="gameOver = true" />
-  <GameOver v-if="gameOver" />
+  <Field :board="board" :player="currentPlayer" @switch-player="onSwitchPlayer" @game-over="onGameOver" />
+  <GameOver v-if="gameOver" :winner="winner" />
+  <Restart @restart="restart"/>
 </template>

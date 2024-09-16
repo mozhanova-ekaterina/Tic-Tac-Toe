@@ -1,2 +1,2 @@
-export type Player = 'Player 2' | 'Player 1'
+export type Player = 'Игрок 2' | 'Игрок 1'
 
