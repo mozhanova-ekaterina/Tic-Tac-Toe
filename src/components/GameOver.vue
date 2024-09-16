@@ -6,10 +6,13 @@ defineProps({
 </script>
 
 <template>
-  <div v-if="winner" class="text-4xl text-green-500 text-center">
-    The winner is {{ winner }} 
-  </div>
-  <div class="text-2xl text-center mb-10" v-else>
-    Ничья
+  <div class="border rounded-xl grow flex items-center justify-center text-lg text-center text-blue-400">
+    <div v-if="winner">
+      The winner is
+      <div class="text-orange-400">{{ winner }}</div>
+    </div>
+    <div class="" v-else>
+      Ничья
+    </div>
   </div>
 </template>

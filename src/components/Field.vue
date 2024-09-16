@@ -37,7 +37,7 @@ const noMoves = (): boolean => props.board.every(cell => cell !== '')
 
 </script>
 <template>
-  <div class="grid grid-cols-3 grid-rows-3 gap-1 max-w-fit mx-auto p-10">
+  <div class="grid grid-cols-3 grid-rows-3 gap-2 max-w-fit mx-auto">
     <Cell @click="onClick" v-for="(cell, index) in props.board " :value="cell" :id="index" />
   </div>
 </template>

@@ -26,7 +26,14 @@ const onGameOver = (player?: Player) => {
 </script>
 
 <template>
-  <Field :board="board" :player="currentPlayer" @switch-player="onSwitchPlayer" @game-over="onGameOver" />
-  <GameOver v-if="gameOver" :winner="winner" />
-  <Restart @restart="restart"/>
+  <main class="flex p-10 gap-5 justify-between">
+    <section>
+      <Field :board="board" :player="currentPlayer" @switch-player="onSwitchPlayer" @game-over="onGameOver" />
+    </section>
+    <section class="border p-2 rounded-xl flex flex-col gap-2">
+      <Restart @restart="restart" />
+      <GameOver v-if="gameOver" :winner="winner" />
+    </section>
+  </main>
+
 </template>
